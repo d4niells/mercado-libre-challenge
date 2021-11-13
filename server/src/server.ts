@@ -2,6 +2,8 @@ import './utils/module-alias';
 
 import express, { Application } from 'express';
 
+import { router } from '@src/routes';
+
 export class SetupServer {
   private app: Application;
 
@@ -21,5 +23,6 @@ export class SetupServer {
 
   private setupExpress(): void {
     this.app.use(express.json());
+    this.app.use('/api', router);
   }
 }
