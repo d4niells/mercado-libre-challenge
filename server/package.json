@@ -1,0 +1,25 @@
+{
+  "name": "mercado-livre-api",
+  "version": "1.0.0",
+  "description": "Simple API to consume products from Mercado Livre",
+  "main": "index.js",
+  "repository": "https://github.com/Daniel0liver/mercado-livre",
+  "author": "Daniel Oliveira",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start:dev": "ts-node-dev ./src/index.ts",
+    "start": "tsc && node ./lib/src/index.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "module-alias": "^2.2.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/module-alias": "^2.0.1",
+    "@types/node": "^16.11.7",
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^4.4.4"
+  }
+}
