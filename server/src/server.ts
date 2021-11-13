@@ -1,3 +1,5 @@
+import './utils/module-alias';
+
 import express, { Application } from 'express';
 
 export class SetupServer {
