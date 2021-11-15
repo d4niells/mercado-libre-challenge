@@ -1,0 +1,10 @@
+{
+  "App": {
+    "port": 5000,
+    "resources": {
+      "MercadoLivre": {
+        "apiUrl": "https://api.mercadolibre.com"
+      }
+    }
+  }
+}
