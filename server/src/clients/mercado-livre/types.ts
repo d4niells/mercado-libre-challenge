@@ -14,3 +14,10 @@ export type Item = {
 export type FetchProductsResponse = {
   results: Item[];
 };
+
+export type GetCurrencyResponse = {
+  id: string;
+  symbol: string;
+  description: string;
+  decimal_places: number;
+};
