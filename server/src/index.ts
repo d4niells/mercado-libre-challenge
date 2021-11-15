@@ -1,8 +1,12 @@
+import config from 'config';
 import { SetupServer } from './server';
 
 (() => {
   try {
-    const server = new SetupServer();
+    const port = config.get<number>('App.port');
+
+    const server = new SetupServer(port);
+
     server.init();
     server.start();
   } catch (error) {
