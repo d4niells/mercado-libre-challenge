@@ -24,6 +24,6 @@ export type Category = string;
 
 export type SearchResponse = {
   author: Author;
-  items: Product[];
   categories: Category[];
+  items: Product[];
 };

@@ -1,60 +1,91 @@
-import {
-  Item,
-  MercadoLivre,
-  FetchProductsResponse,
-} from '@src/clients/mercado-livre';
+import { Item, MercadoLivre } from '@src/clients/mercado-livre';
 
 import ApiError from '@src/utils/errors/api-error';
+import { getPartialName } from '@src/utils/get-name';
 
 import { Author, Product, Query, SearchResponse } from './types';
 
 export class ProductsService {
   constructor(protected mercadoLivre = new MercadoLivre()) {}
 
-  public async search(query: Query): Promise<SearchResponse> {
+  public async search(query: Query): Promise<unknown> {
     try {
       const formatedQuery = this.formatQuery(query);
 
-      const data = await this.mercadoLivre.fetchProducts(formatedQuery);
+      const mlResults = await this.mercadoLivre.fetchProducts(formatedQuery);
 
-      const author = this.getAuthor();
-      const items = await this.getItems(data);
+      const hashMapOfItemsByAuthor = await this.getItemsByAuthor(mlResults);
 
-      return {
-        items,
-        author,
-        categories: [],
-      };
+      return [...hashMapOfItemsByAuthor.values()];
     } catch (error) {
       throw error;
     }
   }
 
-  private getAuthor(): Author {
+  private async getItemsByAuthor(mlResults: Item[]) {
+    const dataByAuthor = new Map<number, SearchResponse>();
+
+    for (const item of mlResults) {
+      const hasCurrentAuthor = dataByAuthor.has(item.seller.id);
+
+      if (hasCurrentAuthor) {
+        const { items, ...rest } = dataByAuthor.get(
+          item.seller.id
+        ) as SearchResponse;
+
+        const exists = items.some((current) => current.id === item.id);
+
+        if (!exists) {
+          const product = await this.convertItemToProduct(item);
+
+          dataByAuthor.set(item.seller.id, {
+            ...rest,
+            items: [...items, product],
+          });
+        }
+      } else {
+        const authorPromise = this.getAuthor(item.seller.id);
+        const productPromise = this.convertItemToProduct(item);
+        const categoriesPromise = this.getCategories(item.category_id);
+
+        const [author, product, categories] = await Promise.all([
+          authorPromise,
+          productPromise,
+          categoriesPromise,
+        ]);
+
+        dataByAuthor.set(item.seller.id, {
+          author,
+          categories,
+          items: [product],
+        });
+      }
+    }
+
+    return dataByAuthor;
+  }
+
+  private async convertItemToProduct(item: Item): Promise<Product> {
+    const price = await this.getPrice(item);
     return {
-      name: 'Daniel',
-      lastname: 'Oliveira',
+      id: item.id,
+      price: price,
+      title: item.title,
+      picture: item.thumbnail,
+      condition: item.condition,
+      free_shipping: item.shipping.free_shipping,
     };
   }
 
-  private async getItems({
-    results,
-  }: FetchProductsResponse): Promise<Product[]> {
-    const items = await Promise.all(
-      results.map(async (item): Promise<Product> => {
-        const price = await this.getPrice(item);
-        return {
-          id: item.id,
-          price: price,
-          title: item.title,
-          picture: item.thumbnail,
-          condition: item.condition,
-          free_shipping: item.shipping.free_shipping,
-        };
-      })
-    );
+  private async getAuthor(sellerId: number): Promise<Author> {
+    const user = await this.mercadoLivre.findUserById(sellerId);
+    return getPartialName(user.nickname);
+  }
 
-    return items;
+  private async getCategories(categoryId: string) {
+    const data = await this.mercadoLivre.findCategoryById(categoryId);
+    const categories = data.path_from_root.map((category) => category.name);
+    return categories;
   }
 
   private async getPrice({
