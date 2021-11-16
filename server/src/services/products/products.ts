@@ -3,7 +3,13 @@ import { Item, MercadoLivre } from '@src/clients/mercado-livre';
 import ApiError from '@src/utils/errors/api-error';
 import { getPartialName } from '@src/utils/get-name';
 
-import { Author, Product, Query, SearchResponse } from './types';
+import {
+  Author,
+  Product,
+  Query,
+  SearchResponse,
+  FindItemResponse,
+} from './types';
 
 export class ProductsService {
   constructor(protected mercadoLivre = new MercadoLivre()) {}
@@ -17,6 +23,33 @@ export class ProductsService {
       const hashMapOfItemsByAuthor = await this.getItemsByAuthor(mlResults);
 
       return [...hashMapOfItemsByAuthor.values()];
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  public async findById(id: string): Promise<FindItemResponse> {
+    try {
+      const itemPromise = await this.mercadoLivre.findItemById(id);
+      const descriptionPromise = this.mercadoLivre.findItemDescriptionById(id);
+
+      const [item, itemDescription] = await Promise.all([
+        itemPromise,
+        descriptionPromise,
+      ]);
+
+      const authorPromise = this.getAuthor(item.seller_id);
+      const productPromise = this.convertItemToProduct(item as unknown as Item);
+
+      const [author, product] = await Promise.all([
+        authorPromise,
+        productPromise,
+      ]);
+
+      return {
+        author,
+        item: { ...product, description: itemDescription.plain_text },
+      };
     } catch (error) {
       throw error;
     }
