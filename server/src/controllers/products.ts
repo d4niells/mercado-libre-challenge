@@ -1,17 +1,35 @@
 import { Request, Response } from 'express';
+import { StatusCodes } from 'http-status-codes';
 
-export class ProductsController {
-  constructor() {}
+import { BaseController } from '@src/controllers/baseController';
 
-  public search(request: Request, response: Response) {
-    return response.status(200).send({
-      message: 'search products',
-    });
+import { ProductsService, Query } from '@src/services/products';
+
+type RequestQuery = {
+  q: Query;
+};
+
+export class ProductsController extends BaseController {
+  constructor() {
+    super();
   }
 
-  public findById(request: Request, response: Response) {
-    return response.status(200).send({
-      message: 'find product by id',
-    });
+  public async search(
+    request: Request<never, never, never, RequestQuery>,
+    response: Response
+  ): Promise<void> {
+    const { q } = request.query;
+
+    try {
+      const product = new ProductsService();
+      const data = await product.search(q);
+
+      response.status(StatusCodes.OK).send(data);
+    } catch (error) {
+      response.status(StatusCodes.BAD_REQUEST).send({
+        code: StatusCodes.BAD_REQUEST,
+        message: `Error: Unable to find products by ${q}`,
+      });
+    }
   }
 }
