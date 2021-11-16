@@ -9,6 +9,10 @@ type RequestQuery = {
   q: Query;
 };
 
+type RequestParams = {
+  id: string;
+};
+
 export class ProductsController extends BaseController {
   constructor() {
     super();
@@ -29,6 +33,25 @@ export class ProductsController extends BaseController {
       response.status(StatusCodes.BAD_REQUEST).send({
         code: StatusCodes.BAD_REQUEST,
         message: `Error: Unable to find products by ${q}`,
+      });
+    }
+  }
+
+  public async findById(
+    request: Request<RequestParams, never, never, never>,
+    response: Response
+  ) {
+    const { id } = request.params;
+
+    try {
+      const product = new ProductsService();
+      const data = await product.findById(id);
+
+      response.status(StatusCodes.OK).send(data);
+    } catch (error) {
+      response.status(StatusCodes.BAD_REQUEST).send({
+        code: StatusCodes.BAD_REQUEST,
+        message: `Error: Product with id: ${id} not exists`,
       });
     }
   }
