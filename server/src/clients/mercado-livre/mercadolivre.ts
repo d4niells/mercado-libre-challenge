@@ -7,6 +7,8 @@ import {
   ProductsResponse,
   CategoryResponse,
   FindUserResponse,
+  FindItemResponse,
+  ItemDescriptionResponse,
 } from './types';
 
 export class MercadoLivre {
@@ -48,6 +50,26 @@ export class MercadoLivre {
     try {
       const url = `${this.api}/users/${id}`;
       const response = await this.request.get<FindUserResponse>(url);
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  public async findItemById(id: string) {
+    try {
+      const url = `${this.api}/items/${id}`;
+      const response = await this.request.get<FindItemResponse>(url);
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  public async findItemDescriptionById(id: string) {
+    try {
+      const url = `${this.api}/items/${id}/description`;
+      const response = await this.request.get<ItemDescriptionResponse>(url);
       return response.data;
     } catch (error) {
       throw error;

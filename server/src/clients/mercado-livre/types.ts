@@ -34,6 +34,10 @@ export type CategoryResponse = {
   path_from_root: Category[];
 };
 
+export type ItemDescriptionResponse = {
+  plain_text: string;
+};
+
 export type Category = {
   id: string;
   name: string;
@@ -42,4 +46,8 @@ export type Category = {
 export type FindUserResponse = {
   id: number;
   nickname: string;
+};
+
+export type FindItemResponse = Omit<Item, 'seller'> & {
+  seller_id: number;
 };
