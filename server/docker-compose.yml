@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  mercado_livre:
+    container_name: mercado-livre-api
+    build: .
+    ports:
+      - '5000:5000'
