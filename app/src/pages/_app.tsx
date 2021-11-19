@@ -10,8 +10,8 @@ const App = ({ Component, pageProps }: AppProps) => {
     <ThemeProvider theme={theme}>
       <Head>
         <title>Mercado Livre</title>
-        <link rel="shortcut icon" href="/img/Logo_ML.png" />
-        <link rel="apple-touch-icon" href="/img/Logo_ML.png" />
+        <link rel="shortcut icon" href="/img/logo_ml.png" />
+        <link rel="apple-touch-icon" href="/img/logo_ml.png" />
         <meta name="description" content="Mercado Livre front-end challenge" />
       </Head>
       <GlobalStyles />
