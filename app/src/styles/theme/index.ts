@@ -1,29 +1,35 @@
 export default {
   grid: {
-    container: '130rem',
-    gutter: '3.2rem'
+    container: {
+      medium: '1000px',
+      large: '1200px'
+    }
   },
   border: {
-    radius: '0.25rem'
+    radius: {
+      small: '2px',
+      medium: '4px'
+    }
   },
   font: {
     family:
       "Poppins, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
     bold: 600,
     sizes: {
-      xsmall: '0.875rem',
-      small: '1.8rem',
-      medium: '1rem',
-      large: '1.125rem',
-      xlarge: '1.5rem',
-      xxlarge: '1.75rem',
-      xxxlarge: '2.875rem'
+      xsmall: '12px',
+      small: '14px',
+      medium: '16px',
+      large: '18px',
+      xlarge: '24px',
+      xxlarge: '28px',
+      xxxlarge: '46px'
     }
   },
   colors: {
     primary: '#FFE600',
     mainBg: '#EEEEEE',
     black: '#333333',
+    white: '#FFFFFF',
     grey: '#999999',
     darkGrey: '#666666',
     lightGrey: '#EEEEEE'
