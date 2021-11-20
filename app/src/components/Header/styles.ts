@@ -1,13 +1,15 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const Header = styled.header`
-  width: 100vw;
-  height: 80px;
-  background-color: ${({ theme }) => theme.colors.primary};
+  ${({ theme }) => css`
+    width: 100vw;
+    padding: ${theme.spacings.medium} 0;
+    background-color: ${theme.colors.primary};
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  `}
 `;
 
 export const wrapper = styled.div`
