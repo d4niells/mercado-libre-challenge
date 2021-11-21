@@ -1,4 +1,4 @@
-import { useState, ChangeEvent, useEffect } from 'react';
+import { useState, ChangeEvent, useEffect, KeyboardEvent } from 'react';
 import Image from 'next/image';
 
 import * as S from './styles';
@@ -21,6 +21,13 @@ const SearchBar = ({ value, loading, onSubmit }: Props) => {
     setSearchValue(value);
   };
 
+  const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      onSubmit(searchValue);
+    }
+  };
+
   const handleSubmit = () => {
     onSubmit(searchValue);
   };
@@ -30,6 +37,7 @@ const SearchBar = ({ value, loading, onSubmit }: Props) => {
       <S.Input
         name="search"
         value={searchValue}
+        onKeyDown={handleKeyDown}
         onChange={handleSearchChange}
         placeholder="Buscar produtos, marcas e muito mais..."
       />
