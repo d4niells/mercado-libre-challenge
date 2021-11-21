@@ -1,4 +1,4 @@
-import { screen } from '@testing-library/react';
+import { fireEvent, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { render } from 'common/tests';
@@ -40,5 +40,23 @@ describe('<SearchBar />', () => {
     rerender(<SearchBar value="" loading={true} onSubmit={onSubmit} />);
 
     expect(button).toBeDisabled();
+  });
+
+  it('should submit the value when clicking enter key', async () => {
+    const onSubmit = jest.fn();
+
+    render(<SearchBar value="" loading={false} onSubmit={onSubmit} />);
+
+    const input = screen.getByRole('textbox');
+    expect(input).toHaveValue('');
+
+    userEvent.type(input, SEARCH_VALUE);
+    expect(input).toHaveValue(SEARCH_VALUE);
+
+    fireEvent.keyDown(input, { key: 'Enter', code: 13 });
+
+    expect(onSubmit).toHaveBeenCalledTimes(1);
+
+    expect(onSubmit).toHaveBeenCalledWith(SEARCH_VALUE);
   });
 });
