@@ -3,6 +3,7 @@ import { AppProps } from 'next/app';
 import { ThemeProvider } from 'styled-components';
 
 import { SearchProvider } from 'contexts/search';
+import { CategoryProvider } from 'contexts/category';
 
 import theme from 'styles/theme';
 import GlobalStyles from 'styles/global';
@@ -18,7 +19,9 @@ const App = ({ Component, pageProps }: AppProps) => {
       </Head>
       <GlobalStyles />
       <SearchProvider>
-        <Component {...pageProps} />
+        <CategoryProvider>
+          <Component {...pageProps} />
+        </CategoryProvider>
       </SearchProvider>
     </ThemeProvider>
   );
