@@ -3,12 +3,18 @@ import styled, { css } from 'styled-components';
 import ButtonBase from 'components/Common/Button';
 
 export const Container = styled.div`
+  display: grid;
+  grid-template-columns: 70% 30%;
+  grid-template-rows: 2;
+  grid-template-areas: 'main main' 'description .';
+
   ${({ theme }) => css`
     padding: ${theme.spacings.large};
   `}
 `;
 
 export const Wrapper = styled.div`
+  grid-area: main;
   display: grid;
   grid-template-columns: 70% 30%;
   grid-template-rows: 1;
@@ -64,9 +70,9 @@ export const Button = styled(ButtonBase)`
 `;
 
 export const Description = styled.div`
-  ${({ theme }) => css`
-    width: 680px;
+  grid-area: description;
 
+  ${({ theme }) => css`
     h1 {
       margin: ${theme.spacings.large} 0;
       font-size: ${theme.font.sizes.xxlarge};
