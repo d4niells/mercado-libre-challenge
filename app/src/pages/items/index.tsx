@@ -3,6 +3,7 @@ import { SearchResponse } from 'api/core';
 
 import Main from 'components/Main';
 import ProductCard from 'components/ProductCard';
+import SectionCategories from 'components/SectionCategories';
 
 import DefaultLayout from 'layouts/default';
 
@@ -19,6 +20,7 @@ type Props = {
 const Products = ({ data }: Props) => {
   return (
     <DefaultLayout>
+      <SectionCategories categories={data[0].categories} />
       <Main>
         <ol>
           {data.map(({ author, items }) => {
