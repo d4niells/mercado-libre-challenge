@@ -3,7 +3,7 @@ Desafio de front-end.
 
 ### Iniciando o app localmente
 
-Dertifique-se de está na pasta mercado-livre/ no seu terminal:
+Certifique-se de está na pasta mercado-livre/ no seu terminal:
 
 
 #### Com docker:
