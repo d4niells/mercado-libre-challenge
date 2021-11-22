@@ -14,7 +14,10 @@ const ProductDetail = ({ data }: Props) => {
   return (
     <S.Container>
       <S.Wrapper>
-        <S.Image src={data.picture} />
+        <S.Image
+          src={data.picture}
+          alt="Image do produto no tamanho 680x460 ao lado das informações do produto"
+        />
         <S.PaymentInfo>
           <h3>
             {condition} - {data.sold_quantity} vendidos
