@@ -129,7 +129,7 @@ export class ProductsService {
 
     return {
       amount: price,
-      currency: data.symbol,
+      currency: data.id,
       decimals: data.decimal_places,
     };
   }
