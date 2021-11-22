@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 import { Product } from 'api/core';
 
 import { formatPrice } from 'common/helpers';
@@ -5,17 +7,29 @@ import { formatPrice } from 'common/helpers';
 import * as S from './styles';
 
 type Props = {
-  product: Product;
+  data: Product;
   onClick(): void;
 };
 
-const ProductCard = ({ product, onClick }: Props) => {
+const ProductCard = ({ data, onClick }: Props) => {
   return (
-    <S.Card onClick={onClick}>
-      <S.Image loading="lazy" src={product.picture} />
+    <S.Card data-testid="product-card" onClick={onClick}>
+      <S.Image loading="lazy" src={data.picture} alt="Imagem do produto" />
       <S.ContentWrapper>
-        <S.Price>{formatPrice(product.price)}</S.Price>
-        <S.Title>{product.title}</S.Title>
+        <S.Price>
+          {formatPrice(data.price)}{' '}
+          {data.free_shipping ? (
+            <figure>
+              <Image
+                src="/img/ic_shipping.png"
+                width="20px"
+                height="20px"
+                alt="Icon redondo com cor de fundo verde e ao centro um caminhão na cor preta informando entrega grátis"
+              />
+            </figure>
+          ) : null}
+        </S.Price>
+        <S.Title>{data.title}</S.Title>
       </S.ContentWrapper>
     </S.Card>
   );

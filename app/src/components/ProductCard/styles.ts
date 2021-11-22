@@ -26,8 +26,18 @@ export const ContentWrapper = styled.div`
 `;
 
 export const Price = styled.h1`
-  font-size: ${({ theme }) => theme.font.sizes.xlarge};
-  font-weight: 400;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  ${({ theme }) => css`
+    font-size: ${theme.font.sizes.xlarge};
+    font-weight: 400;
+
+    figure {
+      margin-left: ${({ theme }) => theme.spacings.medium};
+    }
+  `}
 `;
 
 export const Title = styled.p`
