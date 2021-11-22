@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
 
 import { ProductsService, Query } from '@src/services/products';
+import ApiError, { APIError } from '@src/utils/errors/api-error';
 
 type RequestQuery = {
   q: Query;
@@ -24,6 +25,14 @@ export class ProductsController {
 
       response.status(StatusCodes.OK).send(data);
     } catch (error) {
+      if (error instanceof ApiError) {
+        const apiError = error as APIError;
+        response.status(StatusCodes.BAD_REQUEST).send({
+          code: apiError.code,
+          message: apiError.message,
+        });
+      }
+
       response.status(StatusCodes.BAD_REQUEST).send({
         code: StatusCodes.BAD_REQUEST,
         message: `Error: Unable to find products by ${q}`,
@@ -43,6 +52,14 @@ export class ProductsController {
 
       response.status(StatusCodes.OK).send(data);
     } catch (error) {
+      if (error instanceof ApiError) {
+        const apiError = error as APIError;
+        response.status(StatusCodes.BAD_REQUEST).send({
+          code: apiError.code,
+          message: apiError.message,
+        });
+      }
+
       response.status(StatusCodes.BAD_REQUEST).send({
         code: StatusCodes.BAD_REQUEST,
         message: `Error: Product with id: ${id} not exists`,
