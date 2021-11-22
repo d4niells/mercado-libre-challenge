@@ -12,7 +12,7 @@ type Props = {
 const ProductCard = ({ product, onClick }: Props) => {
   return (
     <S.Card onClick={onClick}>
-      <S.Image src={product.picture} />
+      <S.Image loading="lazy" src={product.picture} />
       <S.ContentWrapper>
         <S.Price>{formatPrice(product.price)}</S.Price>
         <S.Title>{product.title}</S.Title>
