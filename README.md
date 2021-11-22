@@ -9,11 +9,11 @@ Dertifique-se de está na pasta mercado-livre/ no seu terminal:
 #### Com docker:
 
 ```js
- // Iniciando o /app na porta 3000 - http://localhost:3000/
- cd app/ && docker-compose up
- 
  // Iniciando o /server na porta 5000 - http://localhost:5000/api/
  cd server/ && docker-compose up
+ 
+ // Iniciando o /app na porta 3000 - http://localhost:3000/
+ cd app/ && yarn dev
 ```
 
 #### Sem docker:
