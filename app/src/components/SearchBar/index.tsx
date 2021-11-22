@@ -39,7 +39,7 @@ const SearchBar = ({ value, loading, onSubmit }: Props) => {
         value={searchValue}
         onKeyDown={handleKeyDown}
         onChange={handleSearchChange}
-        placeholder="Buscar produtos, marcas e muito mais..."
+        placeholder="Nunca dejes de buscar"
       />
       <S.Button
         aria-label="Search"
