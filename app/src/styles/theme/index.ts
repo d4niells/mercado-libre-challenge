@@ -1,9 +1,6 @@
 export default {
   grid: {
-    container: {
-      medium: '1000px',
-      large: '1200px'
-    }
+    container: '1200px'
   },
   border: {
     radius: {

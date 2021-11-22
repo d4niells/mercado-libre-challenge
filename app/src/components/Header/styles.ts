@@ -13,8 +13,8 @@ export const Header = styled.header`
 `;
 
 export const wrapper = styled.div`
-  max-width: ${({ theme }) => theme.grid.container.large};
-  width: ${({ theme }) => theme.grid.container.medium};
+  max-width: ${({ theme }) => theme.grid.container};
+  width: ${({ theme }) => theme.grid.container};
   height: auto;
 
   display: flex;
