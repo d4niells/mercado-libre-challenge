@@ -65,6 +65,8 @@ export const Button = styled(ButtonBase)`
 
 export const Description = styled.div`
   ${({ theme }) => css`
+    width: 680px;
+
     h1 {
       margin: ${theme.spacings.large} 0;
       font-size: ${theme.font.sizes.xxlarge};
