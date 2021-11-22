@@ -9,8 +9,9 @@ export type Product = {
   free_shipping: boolean;
 };
 
-export type ProductWithDescription = Product & {
+export type ProductDetail = Product & {
   description: string;
+  sold_quantity: number;
 };
 
 export type Price = {
@@ -34,5 +35,5 @@ export type SearchResponse = {
 
 export type FindItemResponse = {
   author: Author;
-  item: ProductWithDescription;
+  item: ProductDetail;
 };

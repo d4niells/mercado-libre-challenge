@@ -4,13 +4,23 @@ export type Item = {
   seller: Seller;
   price: number;
   currency_id: string;
-  picture: string;
+  pictures?: Picture[];
   condition: string;
   thumbnail: string;
   category_id: string;
+  sold_quantity: number;
   shipping: {
     free_shipping: boolean;
   };
+};
+
+export type Picture = {
+  id: string;
+  url: string;
+  secure_url: string;
+  size: string;
+  max_size: string;
+  quality: string;
 };
 
 export type Seller = {

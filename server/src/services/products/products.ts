@@ -4,12 +4,13 @@ import ApiError from '@src/utils/errors/api-error';
 import { getPartialName } from '@src/utils/get-name';
 
 import {
+  Query,
   Author,
   Product,
-  Query,
+  ProductDetail,
   SearchResponse,
   FindItemResponse,
-} from './types';
+} from '.';
 
 export class ProductsService {
   constructor(protected mercadoLivre = new MercadoLivre()) {}
@@ -39,7 +40,10 @@ export class ProductsService {
       ]);
 
       const authorPromise = this.getAuthor(item.seller_id);
-      const productPromise = this.convertItemToProduct(item as unknown as Item);
+      const productPromise = this.convertItemToProduct(
+        item as unknown as Item,
+        true
+      );
 
       const [author, product] = await Promise.all([
         authorPromise,
@@ -48,7 +52,10 @@ export class ProductsService {
 
       return {
         author,
-        item: { ...product, description: itemDescription.plain_text },
+        item: {
+          ...product,
+          description: itemDescription.plain_text,
+        } as ProductDetail,
       };
     } catch (error) {
       throw error;
@@ -98,15 +105,19 @@ export class ProductsService {
     return dataByAuthor;
   }
 
-  private async convertItemToProduct(item: Item): Promise<Product> {
+  private async convertItemToProduct(
+    item: Item,
+    withSoldQuant = false
+  ): Promise<Product> {
     const price = await this.getPrice(item);
     return {
       id: item.id,
       price: price,
       title: item.title,
-      picture: item.thumbnail,
+      picture: item.pictures ? item.pictures[0].url : item.thumbnail,
       condition: item.condition,
       free_shipping: item.shipping.free_shipping,
+      ...(withSoldQuant && { sold_quantity: item.sold_quantity }),
     };
   }
 
