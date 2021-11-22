@@ -7,10 +7,10 @@ Desafio de front-end.
 
 ```js
  // Iniciando o /app na porta 3000 - http://localhost:3000/
- cd /app && docker-compose up
+ cd app/ && docker-compose up
  
  // Iniciando o /server na porta 5000 - http://localhost:5000/api/
- cd /server && docker-compose up
+ cd server/ && docker-compose up
 ```
 
 #### Sem docker:
