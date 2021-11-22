@@ -2,6 +2,7 @@ import { Item, MercadoLivre } from '@src/clients/mercado-livre';
 
 import ApiError from '@src/utils/errors/api-error';
 import { getPartialName } from '@src/utils/get-name';
+import { limit } from '@src/utils/limit';
 
 import {
   Query,
@@ -21,7 +22,11 @@ export class ProductsService {
 
       const mlResults = await this.mercadoLivre.fetchProducts(formatedQuery);
 
-      const hashMapOfItemsByAuthor = await this.getItemsByAuthor(mlResults);
+      const limitedResults = limit(mlResults, 4);
+
+      const hashMapOfItemsByAuthor = await this.getItemsByAuthor(
+        limitedResults
+      );
 
       return [...hashMapOfItemsByAuthor.values()];
     } catch (error) {
