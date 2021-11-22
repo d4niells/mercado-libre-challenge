@@ -35,6 +35,7 @@ Dertifique-se de está na pasta mercado-livre/ no seu terminal:
 - NodeJS
 - Express
 - Axios
+- Jest
 
 
 ### Débito tecnico:
