@@ -1,7 +1,7 @@
-import Main from 'components/Main';
+import DefaultLayout from 'layouts/default';
 
 const Home = () => {
-  return <Main />;
+  return <DefaultLayout />;
 };
 
 export default Home;
