@@ -3,9 +3,7 @@ import { ProductsController } from '@src/controllers/products';
 
 const router = Router();
 
-const product = new ProductsController();
-
-router.get('/items', product.search);
-router.get('/items/:id', product.findById);
+router.get('/items', ProductsController.search);
+router.get('/items/:id', ProductsController.findById);
 
 export { router };

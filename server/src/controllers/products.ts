@@ -1,8 +1,6 @@
 import { Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
 
-import { BaseController } from '@src/controllers/baseController';
-
 import { ProductsService, Query } from '@src/services/products';
 
 type RequestQuery = {
@@ -13,12 +11,8 @@ type RequestParams = {
   id: string;
 };
 
-export class ProductsController extends BaseController {
-  constructor() {
-    super();
-  }
-
-  public async search(
+export class ProductsController {
+  static async search(
     request: Request<never, never, never, RequestQuery>,
     response: Response
   ): Promise<void> {
@@ -37,7 +31,7 @@ export class ProductsController extends BaseController {
     }
   }
 
-  public async findById(
+  static async findById(
     request: Request<RequestParams, never, never, never>,
     response: Response
   ) {
