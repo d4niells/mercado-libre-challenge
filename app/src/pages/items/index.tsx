@@ -3,6 +3,8 @@ import { useRouter } from 'next/router';
 import { MercadoLivre } from 'api/core';
 import { SearchResponse } from 'api/core';
 
+import { useCategories } from 'contexts/category';
+
 import Main from 'components/Main';
 import ProductCard from 'components/ProductCard';
 import SectionCategories from 'components/SectionCategories';
@@ -21,6 +23,7 @@ type Props = {
 
 const Products = ({ data }: Props) => {
   const router = useRouter();
+  const { saveCategories } = useCategories();
 
   const goToProductDetail = (productId: string) => {
     router.push(`items/${productId}`);
@@ -31,12 +34,13 @@ const Products = ({ data }: Props) => {
       <SectionCategories categories={data[0].categories} />
       <Main>
         <ol>
-          {data.map(({ author, items }) => {
+          {data.map(({ author, items, categories }) => {
             return items.map((item) => (
               <ProductCard
                 key={author.name}
                 product={item}
                 onClick={() => {
+                  saveCategories(categories);
                   goToProductDetail(item.id);
                 }}
               />
