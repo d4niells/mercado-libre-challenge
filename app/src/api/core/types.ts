@@ -7,6 +7,10 @@ export type Product = {
   free_shipping: boolean;
 };
 
+export type ProductWithDescription = Product & {
+  description: string;
+};
+
 export type Price = {
   currency: string;
   amount: number;
@@ -22,4 +26,9 @@ export type SearchResponse = {
   author: Author;
   categories: string[];
   items: Product[];
+};
+
+export type GetProductResponse = {
+  author: Author;
+  item: ProductWithDescription;
 };

@@ -12,4 +12,12 @@ export class MercadoLivre {
 
     return response.data;
   }
+
+  static async getProductById(productId: string): Promise<SearchResponse> {
+    const response = await axios.get<SearchResponse>(
+      `${this.baseUrl}/items/${productId}`
+    );
+
+    return response.data;
+  }
 }
