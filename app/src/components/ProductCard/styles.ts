@@ -7,6 +7,7 @@ export const Card = styled.li`
     align-items: flex-start;
     justify-content: flex-start;
 
+    cursor: pointer;
     border-bottom: solid 1px ${theme.colors.lightGrey};
   `}
 `;

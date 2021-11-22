@@ -6,11 +6,12 @@ import * as S from './styles';
 
 type Props = {
   product: Product;
+  onClick(): void;
 };
 
-const ProductCard = ({ product }: Props) => {
+const ProductCard = ({ product, onClick }: Props) => {
   return (
-    <S.Card>
+    <S.Card onClick={onClick}>
       <S.Image src={product.picture} />
       <S.ContentWrapper>
         <S.Price>{formatPrice(product.price)}</S.Price>
