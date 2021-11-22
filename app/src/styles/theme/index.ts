@@ -35,7 +35,7 @@ export default {
     lightGrey: '#EEEEEE'
   },
   spacings: {
-    medium: '1rem',
-    large: '2rem'
+    medium: '16px',
+    large: '32px'
   }
 };
