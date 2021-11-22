@@ -34,11 +34,11 @@ const Products = ({ data }: Props) => {
       <SectionCategories categories={data[0].categories} />
       <Main>
         <ol>
-          {data.map(({ author, items, categories }) => {
+          {data.map(({ items, categories }) => {
             return items.map((item) => (
               <ProductCard
-                key={author.name}
-                product={item}
+                key={item.id}
+                data={item}
                 onClick={() => {
                   saveCategories(categories);
                   goToProductDetail(item.id);
