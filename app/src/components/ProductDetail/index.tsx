@@ -10,6 +10,7 @@ type Props = {
 
 const ProductDetail = ({ data }: Props) => {
   const condition = data.condition === 'new' ? 'Nuevo' : 'Usado';
+  const label = data.sold_quantity > 1 ? 'vendidos' : 'vendido';
 
   return (
     <S.Container>
@@ -20,7 +21,7 @@ const ProductDetail = ({ data }: Props) => {
         />
         <S.PaymentInfo>
           <h3>
-            {condition} - {data.sold_quantity} vendidos
+            {condition} - {data.sold_quantity} {label}
           </h3>
           <h2>{data.title}</h2>
           <h1>{formatPrice(data.price)}</h1>
