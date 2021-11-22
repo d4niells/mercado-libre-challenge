@@ -1,5 +1,7 @@
 import { GetProductResponse, MercadoLivre } from 'api/core';
 
+import { useCategories } from 'contexts/category';
+
 import Main from 'components/Main';
 import Detail from 'components/ProductDetail';
 import SectionCategories from 'components/SectionCategories';
@@ -17,9 +19,11 @@ type Props = {
 };
 
 const ProductDetail = ({ data: { item } }: Props) => {
+  const { categories } = useCategories();
+
   return (
     <DefaultLayout>
-      <SectionCategories categories={[]} />
+      <SectionCategories categories={categories} />
       <Main>
         <Detail data={item} />
       </Main>
