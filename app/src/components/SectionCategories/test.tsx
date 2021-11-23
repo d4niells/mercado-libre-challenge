@@ -1,5 +1,7 @@
 import { screen } from '@testing-library/react';
+
 import { render } from 'common/tests';
+
 import SectionCategories from '.';
 
 describe('<SeactionCategories />', () => {
