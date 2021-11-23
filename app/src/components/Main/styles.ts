@@ -5,5 +5,6 @@ export const Main = styled.main`
     max-width: ${theme.grid.container};
     width: ${theme.grid.container};
     background-color: ${theme.colors.white};
+    border-radius: ${theme.border.radius.medium};
   `}
 `;
