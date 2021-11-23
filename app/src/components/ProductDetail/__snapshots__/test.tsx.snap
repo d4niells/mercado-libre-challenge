@@ -2,10 +2,15 @@
 
 exports[`<ProductDetail /> should render product detail correctly 1`] = `
 .c0 {
+  display: grid;
+  grid-template-columns: 70% 30%;
+  grid-template-rows: 2;
+  grid-template-areas: 'main main' 'description .';
   padding: 32px;
 }
 
 .c1 {
+  grid-area: main;
   display: grid;
   grid-template-columns: 70% 30%;
   grid-template-rows: 1;
@@ -58,7 +63,7 @@ exports[`<ProductDetail /> should render product detail correctly 1`] = `
 }
 
 .c5 {
-  width: 680px;
+  grid-area: description;
 }
 
 .c5 h1 {
@@ -91,7 +96,8 @@ exports[`<ProductDetail /> should render product detail correctly 1`] = `
         Nuevo
          - 
         3
-         vendidos
+         
+        vendidos
       </h3>
       <h2>
         Product title
