@@ -15,7 +15,7 @@ const DefaultLayout = ({ children }: PropsWithChildren<unknown>) => {
 
   const onSearch = (value: string) => {
     saveSearch(value);
-    router.push(`items?search=${value}`);
+    router.push({ pathname: '/items', query: `search=${value}` });
   };
 
   return (
