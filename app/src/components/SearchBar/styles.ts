@@ -12,7 +12,7 @@ export const Wrapper = styled.div`
 
   ${({ theme }) => css`
     background-color: ${theme.colors.white};
-    border-radius: ${theme.border.radius.small};
+    border-radius: ${theme.border.radius.medium};
     border: solid 1px ${theme.colors.lightGrey};
   `}
 `;
@@ -21,7 +21,7 @@ export const Input = styled(InputBase)`
   ${({ theme }) => css`
     flex: 1;
     border: none;
-    border-radius: ${theme.border.radius.small};
+    border-radius: ${theme.border.radius.medium};
     padding: ${theme.spacings.medium};
     font-size: ${theme.font.sizes.medium};
   `}
@@ -30,7 +30,8 @@ export const Input = styled(InputBase)`
 export const Button = styled(ButtonBase)`
   ${({ theme, disabled }) => css`
     padding: ${theme.spacings.medium};
-    border-radius: ${theme.border.radius.small};
+    border-top-right-radius: ${theme.border.radius.medium};
+    border-bottom-right-radius: ${theme.border.radius.medium};
     background-color: ${theme.colors.lightGrey};
 
     cursor: ${disabled ? 'not-allowed' : 'poiter'};
