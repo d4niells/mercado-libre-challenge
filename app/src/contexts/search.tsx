@@ -1,6 +1,8 @@
+import { useLocalStorage } from 'hooks';
 import {
   useMemo,
   useState,
+  useEffect,
   useContext,
   useCallback,
   createContext,
@@ -15,11 +17,22 @@ type SearchContext = {
 const SearchContext = createContext<SearchContext | null>(null);
 
 export const SearchProvider = ({ children }: PropsWithChildren<unknown>) => {
+  const storege = useLocalStorage();
+
   const [searchedValue, setSearchedValue] = useState('');
 
-  const saveSearch = useCallback((value: string) => {
-    setSearchedValue(value);
-  }, []);
+  useEffect(() => {
+    const storedValue = storege.getItem<string>('search');
+    storedValue && setSearchedValue(storedValue);
+  }, [storege]);
+
+  const saveSearch = useCallback(
+    (value: string) => {
+      setSearchedValue(value);
+      storege.setItem('search', value);
+    },
+    [storege]
+  );
 
   const value = useMemo(
     () => ({
