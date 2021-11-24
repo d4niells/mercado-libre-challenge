@@ -1,10 +1,12 @@
-import { screen, waitFor } from '@testing-library/react';
-import { render } from 'common/tests';
+/* eslint-disable no-irregular-whitespace */
+import { screen, waitFor, within } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import { ProductDetail } from 'api/core';
 
+import { render } from 'common/tests';
+
 import ProductCard from '.';
-import userEvent from '@testing-library/user-event';
 
 const PRODUCT_BASE: ProductDetail = {
   id: 'ML',
@@ -33,12 +35,9 @@ describe('<ProductCard />', () => {
       })
     ).toHaveAttribute('src', PRODUCT_BASE.picture);
 
-    expect(
-      screen.getByRole('heading', {
-        // eslint-disable-next-line no-irregular-whitespace
-        name: /\$ 144,00/i
-      })
-    ).toBeInTheDocument();
+    const price = screen.getByTestId('product-price');
+    expect(within(price).getByText(/\$ 144/i)).toBeInTheDocument();
+    expect(within(price).getByText(/00/i)).toBeInTheDocument();
 
     expect(screen.getByText(/product title/i)).toBeInTheDocument();
 

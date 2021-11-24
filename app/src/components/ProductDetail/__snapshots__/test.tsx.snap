@@ -1,6 +1,27 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<ProductDetail /> should render product detail correctly 1`] = `
+.c4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: flex-start;
+  -webkit-box-align: flex-start;
+  -ms-flex-align: flex-start;
+  align-items: flex-start;
+  justify-items: flex-start;
+  padding: 32px 0;
+  font-size: 46px;
+  font-weight: 400;
+}
+
+.c4 span {
+  font-size: 28px;
+  padding-top: 0.34rem;
+  margin-left: 0.3rem;
+}
+
 .c0 {
   display: grid;
   grid-template-columns: 70% 30%;
@@ -46,7 +67,7 @@ exports[`<ProductDetail /> should render product detail correctly 1`] = `
   font-weight: 400;
 }
 
-.c4 {
+.c5 {
   width: 100%;
   padding: 16px;
   font-weight: 400;
@@ -58,22 +79,22 @@ exports[`<ProductDetail /> should render product detail correctly 1`] = `
   transition: background-color 0.2s ease-in;
 }
 
-.c4:hover {
+.c5:hover {
   background-color: #2968c8;
 }
 
-.c5 {
+.c6 {
   grid-area: description;
 }
 
-.c5 h1 {
+.c6 h1 {
   margin: 32px 0;
   font-size: 28px;
   color: #333333;
   font-weight: 400;
 }
 
-.c5 p {
+.c6 p {
   font-size: 16px;
   color: #999999;
 }
@@ -102,18 +123,25 @@ exports[`<ProductDetail /> should render product detail correctly 1`] = `
       <h2>
         Product title
       </h2>
-      <h1>
-        $ 144,00
+      <h1
+        class="c4"
+        data-testid="product-price"
+      >
+        $ 144
+         
+        <span>
+          00
+        </span>
       </h1>
       <button
-        class="c4"
+        class="c5"
       >
         Comprar
       </button>
     </div>
   </div>
   <div
-    class="c5"
+    class="c6"
   >
     <h1>
       Descripción del producto

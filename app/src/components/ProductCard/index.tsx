@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 import { Product } from 'api/core';
 
-import { formatPrice } from 'common/helpers';
+import Price from 'components/Price';
 
 import * as S from './styles';
 
@@ -17,7 +17,7 @@ const ProductCard = ({ data, onClick }: Props) => {
       <S.Image loading="lazy" src={data.picture} alt="Imagem do produto" />
       <S.ContentWrapper>
         <S.Price>
-          {formatPrice(data.price)}{' '}
+          <Price size="sm" price={data.price} />
           {data.free_shipping ? (
             <figure>
               <Image

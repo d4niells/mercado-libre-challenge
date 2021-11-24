@@ -1,6 +1,6 @@
 import { ProductDetail as TProductDetail } from 'api/core';
 
-import { formatPrice } from 'common/helpers';
+import Price from 'components/Price';
 
 import * as S from './styles';
 
@@ -24,7 +24,7 @@ const ProductDetail = ({ data }: Props) => {
             {condition} - {data.sold_quantity} {label}
           </h3>
           <h2>{data.title}</h2>
-          <h1>{formatPrice(data.price)}</h1>
+          <Price size="lg" price={data.price} />
           <S.Button>Comprar</S.Button>
         </S.PaymentInfo>
       </S.Wrapper>
