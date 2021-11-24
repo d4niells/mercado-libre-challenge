@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import { GetProductResponse, MercadoLivre } from 'api/core';
 
@@ -28,14 +28,14 @@ const ProductDetail = ({ data: { item } }: Props) => {
   const { searchedValue } = useSearch();
   const { categories } = useCategories();
 
-  const goToListResults = () => {
+  const goBackToListResults = () => {
     router.push({ pathname: '/items', query: `search=${searchedValue}` });
   };
 
   return (
     <DefaultLayout>
       <Wrapper>
-        <Button onClick={goToListResults}>Voltar a lista | </Button>
+        <Button onClick={goBackToListResults}>Vuelve a la lista</Button>
         <SectionCategories categories={categories} />
       </Wrapper>
       <Main>
@@ -57,6 +57,28 @@ const getServerSideProps = async ({ query }: Context) => {
 const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+
+  ${({ theme }) => css`
+    & > button {
+      margin-right: ${theme.spacings.medium};
+      color: ${theme.colors.darkGrey};
+      transition: color 0.2s ease-in;
+
+      &:hover {
+        color: ${theme.colors.secondary};
+      }
+
+      &::after {
+        content: '';
+        width: 1px;
+        height: 12px;
+        margin-left: ${theme.spacings.medium};
+        background-color: ${theme.colors.grey};
+      }
+    }
+  `}
 `;
 
 export { getServerSideProps };
