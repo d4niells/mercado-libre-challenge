@@ -16,7 +16,7 @@ const ProductCard = ({ data, onClick }: Props) => {
     <S.Card data-testid="product-card" onClick={onClick}>
       <S.Image loading="lazy" src={data.picture} alt="Imagem do produto" />
       <S.ContentWrapper>
-        <S.Price>
+        <S.PriceWrapper>
           <Price size="sm" price={data.price} />
           {data.free_shipping ? (
             <figure>
@@ -28,7 +28,7 @@ const ProductCard = ({ data, onClick }: Props) => {
               />
             </figure>
           ) : null}
-        </S.Price>
+        </S.PriceWrapper>
         <S.Title>{data.title}</S.Title>
       </S.ContentWrapper>
     </S.Card>

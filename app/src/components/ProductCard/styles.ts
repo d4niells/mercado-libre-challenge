@@ -25,7 +25,7 @@ export const ContentWrapper = styled.div`
   `}
 `;
 
-export const Price = styled.h1`
+export const PriceWrapper = styled.h1`
   display: flex;
   align-items: center;
   justify-content: flex-start;

@@ -21,19 +21,18 @@ export const sizes = {
 };
 
 export const Price = styled.h1<{ size: keyof typeof sizes }>`
-  ${({ theme, size }) => css`
+  ${({ size }) => css`
     display: flex;
     align-items: flex-start;
     justify-items: flex-start;
 
-    padding: ${theme.spacings.large} 0;
     font-size: ${sizes[size].h1};
     font-weight: 400;
 
     span {
       font-size: ${sizes[size].span};
       padding-top: ${sizes[size].paddingTop};
-      margin-left: 0.3rem;
+      margin-left: 0.2rem;
     }
   `}
 `;
