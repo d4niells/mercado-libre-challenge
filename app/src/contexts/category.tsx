@@ -1,6 +1,8 @@
+import { useLocalStorage } from 'hooks';
 import {
   useMemo,
   useState,
+  useEffect,
   useContext,
   useCallback,
   createContext,
@@ -15,11 +17,22 @@ type CategoryContext = {
 const CategoryContext = createContext<CategoryContext | null>(null);
 
 export const CategoryProvider = ({ children }: PropsWithChildren<unknown>) => {
+  const storege = useLocalStorage();
+
   const [categories, setCategories] = useState<string[]>([]);
 
-  const saveCategories = useCallback((value: string[]) => {
-    setCategories(value);
-  }, []);
+  useEffect(() => {
+    const storedValue = storege.getItem<string[]>('categories');
+    storedValue && setCategories(storedValue);
+  }, [storege]);
+
+  const saveCategories = useCallback(
+    (value: string[]) => {
+      setCategories(value);
+      storege.setItem('categories', value);
+    },
+    [storege]
+  );
 
   const value = useMemo(
     () => ({
