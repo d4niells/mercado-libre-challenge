@@ -37,5 +37,11 @@ export default {
     small: '8px',
     medium: '16px',
     large: '32px'
+  },
+  breakpoints: {
+    mobile: '0px',
+    tablet: '600px',
+    laptop: '900px',
+    desktop: '1200px'
   }
 };
