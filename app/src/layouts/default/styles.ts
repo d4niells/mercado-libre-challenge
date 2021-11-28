@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const Container = styled.div`
   width: 100vw;
@@ -13,5 +13,18 @@ export const Container = styled.div`
 `;
 
 export const Main = styled.div`
-  min-height: 100%;
+  ${({ theme }) => css`
+    width: ${theme.grid.container};
+    min-height: 100%;
+
+    @media (max-width: ${theme.breakpoints.desktop}) {
+      width: 100%;
+      padding: 0 ${theme.spacings.medium};
+    }
+
+    @media (min-width: ${theme.breakpoints.desktop}) {
+      width: ${theme.grid.container};
+      padding: 0;
+    }
+  `}
 `;

@@ -9,6 +9,10 @@ export const Header = styled.header`
     display: flex;
     align-items: center;
     justify-content: center;
+
+    @media (max-width: ${theme.breakpoints.desktop}) {
+      padding: ${theme.spacings.medium};
+    }
   `}
 `;
 

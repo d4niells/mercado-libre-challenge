@@ -2,13 +2,43 @@ import styled, { css } from 'styled-components';
 
 export const Card = styled.li`
   ${({ theme }) => css`
-    padding: ${theme.spacings.medium};
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
 
     cursor: pointer;
+    padding: ${theme.spacings.medium};
     border-bottom: solid 1px ${theme.colors.lightGrey};
+
+    @media (min-width: ${theme.breakpoints.mobile}) and (max-width: ${theme
+        .breakpoints.tablet}) {
+      width: 100%;
+
+      & > img {
+        min-width: 120px;
+        width: 120px;
+        height: 120px;
+        object-fit: contain;
+      }
+
+      h1 {
+        font-size: ${theme.font.sizes.large};
+      }
+
+      h1 > span {
+        padding-top: 0;
+        font-size: ${theme.font.sizes.medium};
+      }
+
+      p {
+        font-size: ${theme.font.sizes.medium};
+      }
+    }
+
+    @media (min-width: ${theme.breakpoints.tablet}) and (max-width: ${theme
+        .breakpoints.laptop}) {
+      width: 100%;
+    }
   `}
 `;
 
@@ -25,7 +55,7 @@ export const ContentWrapper = styled.div`
   `}
 `;
 
-export const PriceWrapper = styled.h1`
+export const PriceWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-start;

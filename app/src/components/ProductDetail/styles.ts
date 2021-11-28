@@ -3,34 +3,60 @@ import styled, { css } from 'styled-components';
 import ButtonBase from 'components/Common/Button';
 
 export const Container = styled.div`
-  display: grid;
-  grid-template-columns: 70% 30%;
-  grid-template-rows: 2;
-  grid-template-areas: 'main main' 'description .';
-
   ${({ theme }) => css`
+    display: grid;
+    grid-template-columns: 70% 30%;
+    grid-template-areas: 'main main' 'description .';
     padding: ${theme.spacings.large};
+
+    @media (min-width: ${theme.breakpoints.mobile}) and (max-width: ${theme
+        .breakpoints.tablet}) {
+      display: flex;
+      flex-direction: column;
+      padding: ${theme.spacings.medium};
+    }
   `}
 `;
 
 export const Wrapper = styled.div`
-  grid-area: main;
-  display: grid;
-  grid-template-columns: 70% 30%;
-  grid-template-rows: 1;
-  grid-template-areas: 'image payment';
+  ${({ theme }) => css`
+    grid-area: main;
+    display: flex;
+    flex-direction: row;
+
+    @media (min-width: ${theme.breakpoints.mobile}) and (max-width: ${theme
+        .breakpoints.tablet}) {
+      display: flex;
+      flex-direction: column;
+    }
+  `}
 `;
 
 export const Image = styled.img`
-  width: 680px;
-  height: 460px;
-  object-fit: contain;
-  grid-area: image;
+  ${({ theme }) => css`
+    max-width: 680px;
+    flex: 2;
+    height: 460px;
+    object-fit: contain;
+
+    @media (min-width: ${theme.breakpoints.mobile}) {
+      width: 100%;
+      height: auto;
+    }
+
+    @media (min-width: ${theme.breakpoints.tablet}) {
+      width: 60%;
+      height: auto;
+      margin-right: ${theme.spacings.large};
+    }
+  `}
 `;
 
 export const PaymentInfo = styled.div`
-  grid-area: payment;
   ${({ theme }) => css`
+    flex: 1;
+    grid-area: payment;
+
     h1 {
       font-size: ${({ theme }) => theme.font.sizes.xxxlarge};
       padding: ${({ theme }) => theme.spacings.large} 0;
@@ -47,6 +73,24 @@ export const PaymentInfo = styled.div`
       font-size: ${theme.font.sizes.small};
       color: ${theme.colors.black};
       font-weight: 400;
+    }
+
+    @media (min-width: ${theme.breakpoints.mobile}) and (max-width: ${theme
+        .breakpoints.laptop}) {
+      margin-top: ${theme.spacings.large};
+
+      h1 {
+        font-size: ${({ theme }) => theme.font.sizes.xxlarge};
+
+        span {
+          font-size: ${({ theme }) => theme.font.sizes.large};
+        }
+      }
+
+      h2 {
+        font-size: ${theme.font.sizes.large};
+        font-weight: 600;
+      }
     }
   `}
 `;
@@ -81,6 +125,7 @@ export const Description = styled.div`
     }
 
     p {
+      overflow: auto;
       font-size: ${theme.font.sizes.medium};
       color: ${theme.colors.grey};
     }

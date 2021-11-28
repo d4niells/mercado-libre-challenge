@@ -6,5 +6,9 @@ export const Main = styled.main`
     width: ${theme.grid.container};
     background-color: ${theme.colors.white};
     border-radius: ${theme.border.radius.medium};
+
+    @media (max-width: ${theme.breakpoints.desktop}) {
+      width: 100%;
+    }
   `}
 `;
