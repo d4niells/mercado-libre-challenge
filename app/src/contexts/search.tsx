@@ -17,21 +17,21 @@ type SearchContext = {
 const SearchContext = createContext<SearchContext | null>(null);
 
 export const SearchProvider = ({ children }: PropsWithChildren<unknown>) => {
-  const storege = useLocalStorage();
+  const storage = useLocalStorage();
 
   const [searchedValue, setSearchedValue] = useState('');
 
   useEffect(() => {
-    const storedValue = storege.getItem<string>('search');
+    const storedValue = storage.getItem<string>('search');
     storedValue && setSearchedValue(storedValue);
-  }, [storege]);
+  }, [storage]);
 
   const saveSearch = useCallback(
     (value: string) => {
       setSearchedValue(value);
-      storege.setItem('search', value);
+      storage.setItem('search', value);
     },
-    [storege]
+    [storage]
   );
 
   const value = useMemo(

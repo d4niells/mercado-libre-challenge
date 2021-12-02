@@ -17,21 +17,21 @@ type CategoryContext = {
 const CategoryContext = createContext<CategoryContext | null>(null);
 
 export const CategoryProvider = ({ children }: PropsWithChildren<unknown>) => {
-  const storege = useLocalStorage();
+  const storage = useLocalStorage();
 
   const [categories, setCategories] = useState<string[]>([]);
 
   useEffect(() => {
-    const storedValue = storege.getItem<string[]>('categories');
+    const storedValue = storage.getItem<string[]>('categories');
     storedValue && setCategories(storedValue);
-  }, [storege]);
+  }, [storage]);
 
   const saveCategories = useCallback(
     (value: string[]) => {
       setCategories(value);
-      storege.setItem('categories', value);
+      storage.setItem('categories', value);
     },
-    [storege]
+    [storage]
   );
 
   const value = useMemo(
